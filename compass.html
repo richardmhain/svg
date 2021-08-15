@@ -1,1 +1,155 @@
+<!DOCTYPE html>
+<html>
+<body>
 
+  <h1>SVG Compass Parts</h1>
+<a href="#background">Background</a> | 
+<a href="#numbers">Numbers</a> | 
+<a href="#pointer">Pointer</a>
+
+
+<p>
+<a name="background">
+  <h2>Compass Background</h2>
+</a>
+  The static background of the compass. Future additional nice graphics coming.
+</p>
+<p>
+<svg height="600" width="600">
+	<defs>
+	<radialGradient r="0.5" cy="0.5" cx="0.5" spreadMethod="pad" id="radial">
+	<stop offset="0" stop-color="#ffffff"/>
+	<stop offset="1" stop-color="#000000"/>
+	</radialGradient>
+	</defs>
+
+	<g>
+	<title>Compass Circle</title>
+	<ellipse fill="#000000" cx="300" cy="300" id="circle" rx="250" ry="250" stroke="#000"/>
+	<ellipse fill="#000000" stroke="#ffffff" cx="300" cy="300" id="ring" rx="220" ry="220" stroke-width="10"/>
+	</g>
+
+	<g>
+	<title>NSEW</title>
+	<text fill="#ffffff" x="280" y="130" id="North" stroke-width="0" font-size="50"  text-anchor="start" xml:space="preserve" font-weight="normal" font-style="normal" stroke="#000000">N</text>
+	<text fill="#ffffff" x="280" y="500" id="South" stroke-width="0" font-size="50" font-family="'Playball'" text-anchor="start" xml:space="preserve" font-weight="normal" font-style="normal" stroke="#000000">S</text>
+	<text fill="#ffffff" x="100" y="315" id="East" stroke-width="0" font-size="50" font-family="'Playball'" text-anchor="start" xml:space="preserve" font-weight="normal" font-style="normal" stroke="#000000">E</text>
+	<text fill="#ffffff" x="450" y="315" id="West" stroke-width="0" font-size="50" font-family="'Playball'" text-anchor="start" xml:space="preserve" font-weight="normal" font-style="normal" stroke="#000000">W</text>
+	</g>
+
+	Sorry, your browser does not support inline SVG.
+	</g>
+</svg>
+</p>
+
+<p>
+<a name="numbers">
+<a href="#top">^Top</a> | 
+  <h2>Compass Numbers</h2>
+</a>
+Lines and numbers that could've been added to the background. Lots of codes though, decided to separate them.
+</p>
+<p>
+<svg height="600" width="600">
+
+	<g>
+	<title>Compass Numbers</title>
+
+	<text id="0" x="285" y="40" fill="red" font-size="50" font-weight="bold">0</text>
+	<text id="30" x="285" y="40" fill="black" font-size="50" font-weight="bold" transform="rotate(30 300,280)">30</text>
+	<text id="60" x="285" y="40" fill="black" font-size="50" font-weight="bold" transform="rotate(60 305,290)">60</text>
+	<text id="90" x="285" y="40" fill="black" font-size="50" font-weight="bold" transform="rotate(90 305,290)">90</text>
+	<text id="120" x="285" y="40" fill="black" font-size="50" font-weight="bold" transform="rotate(120 315,290)">120</text>
+	<text id="150" x="285" y="40" fill="black" font-size="50" font-weight="bold" transform="rotate(150 315,295)">150</text>
+	<text id="180" x="285" y="40" fill="black" font-size="50" font-weight="bold" transform="rotate(180 315,300)">180</text>
+	<text id="210" x="285" y="40" fill="black" font-size="50" font-weight="bold" transform="rotate(210 315,305)">210</text>
+	<text id="240" x="285" y="40" fill="black" font-size="50" font-weight="bold" transform="rotate(244 320,310)">240</text>
+	<text id="270" x="285" y="40" fill="black" font-size="50" font-weight="bold" transform="rotate(267 310,300)">270</text>
+	<text id="300" x="285" y="40" fill="black" font-size="50" font-weight="bold" transform="rotate(296 305,300)">300</text>
+	<text id="330" x="285" y="40" fill="black" font-size="50" font-weight="bold" transform="rotate(325 310,305)">330</text>
+
+	<line id="linya0" fill="none" x1="300" y1="85" x2="300" y2="50" stroke-width="6" stroke="red" transform="rotate(0 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(30 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(60 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(90 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(120 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(150 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(180 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(210 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(240 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(270 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(300 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(330 300,300)" />
+	<use xlink:href="#linya0" transform="rotate(330 300,300)" />
+
+	<line id="linya2" fill="none" x1="300" y1="60" x2="300" y2="30" stroke-width="6" stroke="black" transform="rotate(10 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(10 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(30 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(40 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(60 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(70 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(90 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(100 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(120 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(130 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(150 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(160 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(180 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(190 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(210 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(220 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(240 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(250 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(270 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(280 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(300 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(310 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(330 300,300)" />
+	<use xlink:href="#linya2" transform="rotate(340 300,300)" />
+
+	Sorry, your browser does not support inline SVG.
+	</g>
+</svg>
+</p>
+
+<p>
+<a name="pointer">
+<a href="#top">^Top</a> | 
+  <h2>Compass Pointer</h2>
+</a>
+The dynamic portion of the graphics, should always point north.
+</p>
+<p>
+<svg height="400" width="100">
+	<defs>
+	<radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+		<stop offset="0%" style="stop-color:black;stop-opacity:0" />
+		<stop offset="100%" style="stop-color:black;stop-opacity:1" />
+	</radialGradient>
+	</defs>
+
+	<g>
+	<title>Compass Pointer</title>
+	<polygon id="tulis" points="50,10 98,50 2,50" style="fill:yellow;stroke:null;stroke-width:0" />
+
+	<circle id="gitna" cx="50" cy="200" r="49" stroke="black" stroke-width="0" fill="url(#grad1)" />
+
+	<line id="linya" fill="none" x1="50" y1="50" x2="50" y2="155" stroke-width="30" stroke="black"/>
+	<line id="linya" fill="none" x1="50" y1="245" x2="50" y2="360" stroke-width="30" stroke="black"/>
+
+	<polygon points="
+	  50,280 
+	  98,320 
+	  98,400 
+	  50,360 
+	  2,400 
+	  2,320" 
+	  style="fill:black;stroke:black;stroke-width:2" />
+
+	Sorry, your browser does not support inline SVG.
+	</g>
+</svg>
+</p>
+
+</body>
+</html>
