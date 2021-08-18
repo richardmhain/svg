@@ -1,0 +1,25 @@
+<svg width="100" height="460" xmlns="http://www.w3.org/2000/svg">
+<title>Compass Pointer</title>
+<defs>
+<radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+	<stop offset="60%" stop-color="white" stop-opacity="1" />
+	<stop offset="100%" stop-color="green" stop-opacity="1" />
+</radialGradient>
+<linearGradient id="grad2" x1="0" x2="1" y1="0" y2="0">
+	<stop offset="2%" stop-color="green"/>
+	<stop offset="50%" stop-color="white"/>
+	<stop offset="98%" stop-color="green"/>
+</linearGradient>
+</defs>
+
+<g>
+<polygon id="line" points="50,0 45,51 3,92 35,92 35,302 2,340 2,418 50,370 
+97,418 97,340 65,302 65,92 97,92 55,51" stroke="black" stroke-width="2" fill="url(#grad2)" />
+
+<circle id="center" cx="50" cy="220" r="48" stroke="green" stroke-width="2" fill="url(#grad1)" />
+
+<polygon id="point" points="50,4 47,52 8,90 92,90 53,52" fill="yellow" />
+
+Sorry, your browser does not support inline SVG.
+</g>
+</svg>

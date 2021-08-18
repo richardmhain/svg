@@ -1,0 +1,103 @@
+<svg width="600" height="600" xmlns="http://www.w3.org/2000/svg">
+<title>Compass X</title>
+
+<defs>
+	<radialGradient id="grad0" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+		<stop offset="100%" style="stop-color:lightgreen;stop-opacity:0.1" />
+	</radialGradient>
+	<radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+		<stop offset="60%" stop-color="white" stop-opacity="1" />
+		<stop offset="100%" stop-color="green" stop-opacity="1" />
+	</radialGradient>
+</defs>
+
+<style>
+	.xLn10{stroke-width:10; stroke: red; x1:300; y1:85; x2:300; y2:50;}
+	.xLn06{stroke-width:06; stroke: black}
+	.xLn02{stroke-width:02; stroke: black}
+
+	.xTxtRed{font: bold 60px serif; fill: red; text-anchor: middle}
+	.xWhite{font: bold 60px serif; fill: white; text-anchor: middle}
+	.xBlack{font: bold 40px sans-serif; fill: green; text-anchor: middle}
+</style>
+
+
+<g>
+<title>Circles</title>
+<circle id="xOuter" cx="300" cy="300" r="298" stroke="black" stroke-width="6" fill="white" />
+<circle id="xMid" cx="300" cy="300" r="250" stroke="null" fill="url(#grad0)" />
+<circle id="xInner" cx="300" cy="300" r="215" stroke="green" stroke-width="2" fill="green" />
+<circle id="xCenter" cx="300" cy="300" r="100" stroke="green" stroke-width="2" fill="url(#grad1)" />
+</g>
+
+
+<g>
+<title>Lines</title>
+<line id="linya0" x1="300" y1="85" x2="300" y2="50" class="xLn10" />
+<use href="#linya0" transform="rotate(90 300,300)" />
+<use href="#linya0" transform="rotate(180 300,300)" />
+<use href="#linya0" transform="rotate(270 300,300)" />
+
+<line id="linya2" x1="300" y1="85" x2="300" y2="50" class="xLn06" transform="rotate(30 300,300)" />
+<use href="#linya2" transform="rotate(30 300,300)" />
+<use href="#linya2" transform="rotate(90 300,300)" />
+<use href="#linya2" transform="rotate(120 300,300)" />
+<use href="#linya2" transform="rotate(180 300,300)" />
+<use href="#linya2" transform="rotate(210 300,300)" />
+<use href="#linya2" transform="rotate(270 300,300)" />
+<use href="#linya2" transform="rotate(300 300,300)" />
+
+<line id="linya3" x1="300" y1="85" x2="300" y2="10" class="xLn02" transform="rotate(10 300,300)" />
+<use href="#linya3" transform="rotate(10 300,300)" />
+<use href="#linya3" transform="rotate(30 300,300)" />
+<use href="#linya3" transform="rotate(40 300,300)" />
+<use href="#linya3" transform="rotate(60 300,300)" />
+<use href="#linya3" transform="rotate(70 300,300)" />
+<use href="#linya3" transform="rotate(90 300,300)" />
+<use href="#linya3" transform="rotate(100 300,300)" />
+<use href="#linya3" transform="rotate(120 300,300)" />
+<use href="#linya3" transform="rotate(130 300,300)" />
+<use href="#linya3" transform="rotate(150 300,300)" />
+<use href="#linya3" transform="rotate(160 300,300)" />
+<use href="#linya3" transform="rotate(180 300,300)" />
+<use href="#linya3" transform="rotate(190 300,300)" />
+<use href="#linya3" transform="rotate(210 300,300)" />
+<use href="#linya3" transform="rotate(220 300,300)" />
+<use href="#linya3" transform="rotate(240 300,300)" />
+<use href="#linya3" transform="rotate(250 300,300)" />
+<use href="#linya3" transform="rotate(270 300,300)" />
+<use href="#linya3" transform="rotate(280 300,300)" />
+<use href="#linya3" transform="rotate(300 300,300)" />
+<use href="#linya3" transform="rotate(310 300,300)" />
+<use href="#linya3" transform="rotate(330 300,300)" />
+<use href="#linya3" transform="rotate(340 300,300)" />
+</g>
+
+
+<g>
+<title>NSEW</title>
+<text id="N" x="300" y="130" class="xWhite">N</text>
+<text id="E" x="300" y="130" class="xWhite" transform="rotate(90 300,300)">E</text>
+<text id="S" x="300" y="130" class="xWhite" transform="rotate(180 300,300)">S</text>
+<text id="W" x="300" y="130" class="xWhite" transform="rotate(270 300,300)">W</text>
+</g>
+
+
+<g>
+<title>Numbers</title>
+<text id="0" x="300" y="48" class="xTxtRed">0</text>
+<text id="30" x="300" y="45" class="xBlack" transform="rotate(30 300,300)">30</text>
+<text id="60" x="300" y="45" class="xBlack" transform="rotate(60 300,300)">60</text>
+<text id="90" x="300" y="45" class="xBlack" transform="rotate(90 300,300)">90</text>
+<text id="120" x="300" y="45" class="xBlack" transform="rotate(120 300,300)">120</text>
+<text id="150" x="300" y="45" class="xBlack" transform="rotate(150 300,300)">150</text>
+<text id="180" x="300" y="45" class="xBlack" transform="rotate(180 300,300)">180</text>
+<text id="210" x="300" y="45" class="xBlack" transform="rotate(210 300,300)">210</text>
+<text id="240" x="300" y="45" class="xBlack" transform="rotate(240 300,300)">240</text>
+<text id="270" x="300" y="45" class="xBlack" transform="rotate(270 300,300)">270</text>
+<text id="300" x="300" y="45" class="xBlack" transform="rotate(300 300,300)">300</text>
+<text id="330" x="300" y="45" class="xBlack" transform="rotate(330 300,300)">330</text>
+</g>
+
+Sorry, your browser does not support inline SVG.
+</svg>
