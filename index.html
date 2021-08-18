@@ -1,13 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Compass Web App</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="description" content="Github Compass using HTML, CSS, JavaScript and SVG for Sample web app">
+<meta name="keywords" content="HTML, CSS, JavaScript, SVG, Compass">
+<meta name="author" content="Richard Hain">
+
+<title>Compass SVG</title>
+
+<style>
+body{
+	text-align: center;
+}
+#xCompass {
+	text-align: center;
+	display: none;
+}
+.xTxt{
+	font: bold 30px sans-serif; 
+	color: green; 
+	text-anchor: middle
+}
+</style>
+
+<script>
+function doDiv(y) {
+	var x = document.getElementById("xCompass");
+	x.style.display = y;
+}
+
+var img 	= null,
+	needle 	= null,
+	canvas	= null,
+	ctx 	= null,
+	degrees = 0,
+	xCircle = 'circle.svg',
+	xPointer = 'pointer.svg',
+	on=false,
+	x=0;
+
+function draw() {
+/*
+Resized from orig img=600x600, needle=100x420
+ctx.drawImage(img, x-coor, y, width, height);
+*/
+	ctx.drawImage(img, 0, 0, 300, 300);
+	ctx.save();
+
+	ctx.translate(150, 150);
+	ctx.rotate(degrees * (Math.PI / 180));
+	ctx.drawImage(needle, -25, -110, 50, 230);
+	ctx.restore();
+
+}
+
+function handleOrientation(event) {
+	degrees = event.alpha;
+	if(degrees==null){
+		window.removeEventListener('deviceorientation', handleOrientation);
+		degrees=0;
+	}
+	doCanvas(degrees);
+}
+
+function init() {
+// Initialize once, then skip
+	if(on){return;} else {on=true;}
+
+	document.getElementById("btnCompassOn").disabled = true;
+	document.getElementById("btnCompassOff").disabled = false;
+
+	doDiv("block");
+	window.addEventListener('deviceorientation', handleOrientation);
+	var canvas = document.getElementById('compass');
+	if (canvas.getContext('2d')) {
+		ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, 600, 600);
+
+		// Load compass images
+		needle 		= new Image();
+		needle.src 	= xPointer;
+		img 		= new Image();
+		img.src 	= xCircle;
+	}
+	else {alert("Canvas not supported!");}
+}
+
+function doCanvas(y) {
+// Activate once or update "on" indicator and continue
+	if(on==false){return;}
+
+	x+=y;
+	if(x>359){x-=360};
+	if(x<0){x+=360};
+	if(y==0){x=0};
+
+	document.getElementById("xOutput").innerHTML = x;
+	degrees=x;
+	draw();
+}
+
+function clearCanvas() {
+	window.removeEventListener('deviceorientation', handleOrientation);
+	ctx.clearRect(0, 0, 600, 600);
+	document.getElementById("xOutput").innerHTML = "";
+	document.getElementById("btnCompassOn").disabled = false;
+	document.getElementById("btnCompassOff").disabled = true;
+	on=false;
+	doDiv(null);
+}
+</script>
 </head>
 
 <body>
+	<h1>Compass SVG</h1>
 
-<h1>Welcome to Compass Homepage</h1>
-<a href="https://htmlpreview.github.io/?https://github.com/richardmhain/svg-compass/blob/main/compass.html">Parts</a>
-
+<p>
+	<input type="button" id="btnCompassOn" class="bigButton" value="COMPASS: ON" onclick="init();">
+	<input type="button" id="btnCompassOff" class="bigButton" value="OFF" onclick="clearCanvas()" disabled><br>
+</p>
+<div id="xCompass">
+	<input type="button" id="btnCompass2" class="bigButton" value="-10" onclick="doCanvas(-10);">
+	<input type="button" id="btnCompass3" class="bigButton" value="+10" onclick="doCanvas(10);">
+	<input type="button" id="btnCompass1" class="bigButton" value="Reset" onclick="doCanvas(0);">
+	<input type="button" id="btnCompass0" class="bigButton" value="-90" onclick="doCanvas(-90);">
+	<input type="button" id="btnCompass1" class="bigButton" value="+90" onclick="doCanvas(90);">
+	<br><br>
+</div>
+<div id="xOutput" class="xTxt"></div>
+<canvas id="compass" width="300" height="300"></canvas>
 </body>
 </html>
