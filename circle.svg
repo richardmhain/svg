@@ -16,7 +16,7 @@
 	.xLn06{stroke-width:06; stroke: black}
 	.xLn02{stroke-width:02; stroke: black}
 
-	.xTxtRed{font: bold 60px serif; fill: red; text-anchor: middle}
+	.xTxtRed{font: bold 50px serif; fill: red; text-anchor: middle}
 	.xWhite{font: bold 60px serif; fill: white; text-anchor: middle}
 	.xBlack{font: bold 40px sans-serif; fill: green; text-anchor: middle}
 </style>
@@ -24,7 +24,7 @@
 
 <g>
 <title>Circles</title>
-<circle id="xOuter" cx="300" cy="300" r="298" stroke="black" stroke-width="6" fill="white" />
+<circle id="xOuter" cx="300" cy="300" r="296" stroke="green" stroke-width="6" fill="white" />
 <circle id="xMid" cx="300" cy="300" r="250" stroke="null" fill="url(#grad0)" />
 <circle id="xInner" cx="300" cy="300" r="215" stroke="green" stroke-width="2" fill="green" />
 <circle id="xCenter" cx="300" cy="300" r="100" stroke="green" stroke-width="2" fill="url(#grad1)" />
@@ -85,7 +85,7 @@
 
 <g>
 <title>Numbers</title>
-<text id="0" x="300" y="48" class="xTxtRed">0</text>
+<text id="0" x="300" y="46" class="xTxtRed">0</text>
 <text id="30" x="300" y="45" class="xBlack" transform="rotate(30 300,300)">30</text>
 <text id="60" x="300" y="45" class="xBlack" transform="rotate(60 300,300)">60</text>
 <text id="90" x="300" y="45" class="xBlack" transform="rotate(90 300,300)">90</text>
