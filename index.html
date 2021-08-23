@@ -3,15 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-<meta name="description" content="Github Compass using HTML, CSS, JavaScript and SVG for Sample web app">
-<meta name="keywords" content="HTML, CSS, JavaScript, SVG, Compass">
+<meta name="description" content="HTML CSS JavaScript SVG for Sample Web App Compass SVG">
+<meta name="keywords" content="HTML, CSS, JavaScript, SVG, Compass, Compass SVG">
 <meta name="author" content="Richard Hain">
 
 <title>Compass SVG</title>
 
 <style>
 body{
+	background-color: white;
+	color: green;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align: center;
+	vertical-align: middle;
 }
 #xCompass {
 	text-align: center;
@@ -19,116 +23,217 @@ body{
 }
 .xTxt{
 	font: bold 30px sans-serif; 
-	color: green; 
-	text-anchor: middle
+	text-anchor: middle;
+}
+.xBox:hover, .cBox:hover{
+	cursor: pointer;
+}
+.cBox:disabled{
+	cursor: auto;
+}
+
+.bBig {
+	text-align:center;
+	vertical-align: middle;
+	font-size:18px;
+	border: 2px solid gray;
+	border-radius: 10px;
+	background-color: lightgreen;
+	color: green;
+}
+.bBig:hover {
+	background-color: lightyellow;
+	color: black;
+	cursor: pointer;
+}
+.bBig:disabled{
+	background-color: lightgray;
+	color: gray;
+	cursor: auto;
+}
+
+.dark-mode {
+	background-color: black;
+	color: lightgreen;
 }
 </style>
 
+
 <script>
+
 function doDiv(y) {
-	var x = document.getElementById("xCompass");
-	x.style.display = y;
+	document.getElementById("xCompass").style.display = y;
+}
+
+function myMode() {
+	var element = document.body;
+// element.classList.add("xTxt");
+	element.classList.toggle("dark-mode");
 }
 
 var img 	= null,
 	needle 	= null,
 	canvas	= null,
 	ctx 	= null,
-	degrees = 0,
+	degrees = null,
 	xCircle = 'circle.svg',
 	xPointer = 'pointer.svg',
-	on=false,
-	x=0;
+	xMobile = true;
+	xOn		= false,
+	x		= 0;
+	y		= 0;
 
-function draw() {
-/*
-Resized from orig img=600x600, needle=100x420
-ctx.drawImage(img, x-coor, y, width, height);
-*/
-	ctx.drawImage(img, 0, 0, 300, 300);
-	ctx.save();
-
-	ctx.translate(150, 150);
-	ctx.rotate(degrees * (Math.PI / 180));
-	ctx.drawImage(needle, -25, -110, 50, 230);
-	ctx.restore();
-
-}
-
+// ---------------------------------------------------------
+// Check if mobile, use alpha else 0 and deactivate listener
+// ---------------------------------------------------------
 function handleOrientation(event) {
 	degrees = event.alpha;
+
+	// Deactivate event listener if degrees is null
 	if(degrees==null){
+		// Desktop, toggle Mobile checkbox
+		xMobile=false; // true=Mobile (default), false=desktop
+		document.getElementById("cMobile").checked = false;
+		document.getElementById("cMobile").disabled = true;
+
+		// Remove event listener and initialize
 		window.removeEventListener('deviceorientation', handleOrientation);
-		degrees=0;
+		doInit();
+	} else {
 	}
-	doCanvas(degrees);
 }
 
-function init() {
-// Initialize once, then skip
-	if(on){return;} else {on=true;}
 
-	document.getElementById("btnCompassOn").disabled = true;
-	document.getElementById("btnCompassOff").disabled = false;
+// Activate device orientation event listener on 1st pass
+window.addEventListener('deviceorientation', handleOrientation);
 
-	doDiv("block");
-	window.addEventListener('deviceorientation', handleOrientation);
+
+// ---------------------------------------------------------
+// Draw background then rotate needle per degrees value
+// Resized from orig img=600x600, needle=100x420
+// ctx.drawImage(img, x-coor, y, width, height);
+// ---------------------------------------------------------
+function draw() {
+	ctx.drawImage(img, 0, 0, 300, 300);
+	ctx.save();
+	ctx.translate(150, 150);
+	ctx.rotate(degrees * Math.PI / 180);
+	ctx.drawImage(needle, -25, -110, 50, 230);
+	ctx.restore();
+}
+
+
+// ---------------------------------------------------------
+// Run once to activate listerner and load graphics
+// ---------------------------------------------------------
+function doInit() {
 	var canvas = document.getElementById('compass');
 	if (canvas.getContext('2d')) {
 		ctx = canvas.getContext('2d');
-		ctx.clearRect(0, 0, 600, 600);
+		ctx.clearRect(0, 0, 300, 300);
 
-		// Load compass images
 		needle 		= new Image();
 		needle.src 	= xPointer;
 		img 		= new Image();
 		img.src 	= xCircle;
-	}
-	else {alert("Canvas not supported!");}
+	} else {alert("Canvas not supported!");}
 }
 
+// ---------------------------------------------------------
+// Update degrees, buttons, xOn; run doInit() and draw()
+// ---------------------------------------------------------
 function doCanvas(y) {
-// Activate once or update "on" indicator and continue
-	if(on==false){return;}
 
-	x+=y;
-	if(x>359){x-=360};
-	if(x<0){x+=360};
-	if(y==0){x=0};
+// Stop Auto, Reset to 0
+	if(xLoop && y==0){
+		clearInterval(myLoop);
+	}
 
-	document.getElementById("xOutput").innerHTML = x;
-	degrees=x;
+// Desktop routine, bypass if mobile
+	if(xMobile==false){
+		doDiv("block");
+		x+=y;
+		if(x>359){x-=360};
+		if(x<0){x+=360};
+		if(y==0){x=0};
+		degrees=x;
+	}
+
+	document.getElementById("xOutput").innerHTML = degrees.toFixed(0);
+	document.getElementById("btn000").disabled = false;
+	if(degrees==0){document.getElementById("btn000").disabled = true;}
+
+	if(xOn==false){
+		document.getElementById("btnCompassOn").disabled = true;
+		document.getElementById("btnCompassOff").disabled = false;
+		xOn=true;
+		doInit();
+	}
+
 	draw();
 }
 
+// Cleanup routine for OFF button
 function clearCanvas() {
-	window.removeEventListener('deviceorientation', handleOrientation);
-	ctx.clearRect(0, 0, 600, 600);
+
+// Stop Auto
+	clearInterval(myLoop);
+
+// Clear canvas
+	ctx.clearRect(0, 0, 300, 300);
+	xOn=false;
 	document.getElementById("xOutput").innerHTML = "";
 	document.getElementById("btnCompassOn").disabled = false;
 	document.getElementById("btnCompassOff").disabled = true;
-	on=false;
+
+// Hide div
 	doDiv(null);
 }
+
+
+// Auto Start
+var myLoop,
+	xLoop=false;
+function doLoop(x){
+	xLoop=true;
+	clearInterval(myLoop);
+	myLoop = setInterval(doCanvas, 25, x);
+}
+// Auto End
 </script>
 </head>
 
 <body>
 	<h1>Compass SVG</h1>
 
-<p>
-	<input type="button" id="btnCompassOn" class="bigButton" value="COMPASS: ON" onclick="init();">
-	<input type="button" id="btnCompassOff" class="bigButton" value="OFF" onclick="clearCanvas()" disabled><br>
-</p>
+<div id="dOnOff"><p>
+	<label class="xBox">Mobile
+	<input type="checkbox" id="cMobile" name="Mobile" class="cBox" onclick="myMobile();" checked>
+	</label>
+
+	<input type="button" id="btnCompassOn" class="bBig" value="COMPASS: ON" onclick="doCanvas(0)">
+	<input type="button" id="btnCompassOff" class="bBig" value="OFF" onclick="clearCanvas()" disabled>
+
+	<label class="xBox">
+	<input type="checkbox" id="cMode" name="Dark Mode" class="cBox" onclick="myMode()">
+	Dark Mode</label><br>
+</p></div>
+
 <div id="xCompass">
-	<input type="button" id="btnCompass2" class="bigButton" value="-10" onclick="doCanvas(-10);">
-	<input type="button" id="btnCompass3" class="bigButton" value="+10" onclick="doCanvas(10);">
-	<input type="button" id="btnCompass1" class="bigButton" value="Reset" onclick="doCanvas(0);">
-	<input type="button" id="btnCompass0" class="bigButton" value="-90" onclick="doCanvas(-90);">
-	<input type="button" id="btnCompass1" class="bigButton" value="+90" onclick="doCanvas(90);">
-	<br><br>
+	<input type="button" id="btn90m" class="bBig" value="-90" onclick="doCanvas(-90);">
+	<input type="button" id="btn10m" class="bBig" value="-10" onclick="doCanvas(-10);">
+	<input type="button" id="btn0ap" class="bBig" value="-Auto" onclick="doLoop(-1);">
+	<input type="button" id="btn000" class="bBig" value="Reset" onclick="doCanvas(0);">
+	<input type="button" id="btn0am" class="bBig" value="+Auto" onclick="doLoop(1);">
+	<input type="button" id="btn10p" class="bBig" value="+10" onclick="doCanvas(10);">
+	<input type="button" id="btn90p" class="bBig" value="+90" onclick="doCanvas(90);">
+	<br>
 </div>
+
+<!-- Text displaying degrees value -->
 <div id="xOutput" class="xTxt"></div>
+
+<!-- Canvas full size: width="600" height="600" -->
 <canvas id="compass" width="300" height="300"></canvas>
 </body>
 </html>
