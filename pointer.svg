@@ -16,7 +16,7 @@
 <polygon id="line" points="50,0 45,51 3,92 35,92 35,302 2,340 2,418 50,370 
 97,418 97,340 65,302 65,92 97,92 55,51" stroke="black" stroke-width="2" fill="url(#grad2)" />
 
-<circle id="center" cx="50" cy="220" r="48" stroke="green" stroke-width="2" fill="url(#grad1)" />
+<circle id="center" cx="50" cy="220" r="48" stroke="black" stroke-width="2" fill="url(#grad1)" />
 
 <polygon id="point" points="50,4 47,52 8,90 92,90 53,52" fill="yellow" />
 
